@@ -1,0 +1,66 @@
+---
+interface Props {
+  size?: number;
+  class?: string;
+}
+
+const { size = 42, class: className = '' } = Astro.props;
+const uid = `ecobrand-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<svg
+  class={className}
+  width={size}
+  height={size}
+  viewBox="0 0 64 64"
+  role="img"
+  aria-label="ECOTEC — liebre con coco"
+>
+  <defs>
+    <linearGradient id={uid} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee" />
+      <stop offset="0.55" stop-color="#0ea5e9" />
+      <stop offset="1" stop-color="#10b981" />
+    </linearGradient>
+  </defs>
+
+  <!-- Ficha redondeada azul -> verde -->
+  <rect x="1.5" y="1.5" width="61" height="61" rx="18" fill={`url(#${uid})`} />
+  <ellipse cx="16" cy="13" rx="16" ry="10" fill="#ffffff" opacity="0.16" />
+  <circle cx="52" cy="13" r="4.5" fill="#ffffff" opacity="0.14" />
+
+  <!-- Liebre -->
+  <g fill="#ffffff">
+    <!-- orejas largas -->
+    <ellipse cx="19.5" cy="15" rx="3.8" ry="13" transform="rotate(-14 19.5 15)" />
+    <ellipse cx="31" cy="14.5" rx="3.8" ry="13" transform="rotate(10 31 14.5)" />
+    <!-- orejas interiores -->
+    <ellipse cx="19.7" cy="16" rx="1.7" ry="8.6" transform="rotate(-14 19.7 16)" fill="#d9f6ff" opacity="0.8" />
+    <ellipse cx="31" cy="15.6" rx="1.7" ry="8.6" transform="rotate(10 31 15.6)" fill="#d9f6ff" opacity="0.8" />
+    <!-- cuerpo -->
+    <ellipse cx="22" cy="46" rx="12.6" ry="10" />
+    <!-- cabeza -->
+    <circle cx="25" cy="30" r="8.4" />
+    <!-- cola -->
+    <circle cx="9.8" cy="47" r="3.6" />
+  </g>
+
+  <!-- Cara -->
+  <circle cx="21.9" cy="29.4" r="1.55" fill="#0a3b46" />
+  <circle cx="27.6" cy="29.4" r="1.55" fill="#0a3b46" />
+  <ellipse cx="24.75" cy="33.2" rx="1.9" ry="1.25" fill="#0a3b46" opacity="0.55" />
+  <path d="M23 36.6q1.8 1.6 3.6 0" stroke="#0a3b46" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.55" />
+
+  <!-- Coco -->
+  <g>
+    <circle cx="47.5" cy="42.5" r="9.2" fill="#f4dea8" />
+    <circle cx="47.5" cy="42.5" r="9.2" fill="none" stroke="#d3b273" stroke-width="1.2" />
+    <path d="M44 45a4.6 4.6 0 0 0 7 0 3.6 3.6 0 0 1-7 0z" fill="#e6c98f" />
+    <!-- hojas de palmera -->
+    <g stroke="#37d08c" stroke-width="2.6" fill="none" stroke-linecap="round">
+      <path d="M47.5 35.5 C44 31 39.5 30.2 35.5 31.6" />
+      <path d="M47.5 35.5 C51 31 55.5 30.6 59.2 32.4" />
+    </g>
+    <path d="M47.5 36.4v-3.4" stroke="#2bb877" stroke-width="2.4" stroke-linecap="round" />
+  </g>
+</svg>

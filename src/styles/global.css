@@ -1,32 +1,33 @@
 /* ============================================================
    ECOTEC — Design tokens & global styles
-   Tema oscuro inspirado en landing de carbón premium
+   Tema playero: azules, turquesas y verdes (estilo costero claro)
    ============================================================ */
 
 :root {
-  /* Fondo */
-  --bg: #0b0b0c;
-  --bg-soft: #101013;
-  --panel: #17171a;
-  --panel-2: #1e1e22;
-  --line: rgba(255, 255, 255, 0.09);
-  --line-strong: rgba(255, 255, 255, 0.16);
+  /* Fondos claros tipo playa */
+  --bg: #f4faf6;
+  --bg-soft: #e7f4ed;
+  --panel: #ffffff;
+  --panel-2: #eef8f2;
+  --line: rgba(8, 60, 70, 0.1);
+  --line-strong: rgba(8, 60, 70, 0.2);
 
   /* Texto */
-  --text: #f5f5f2;
-  --muted: #a8a8a4;
-  --faint: #73736f;
+  --text: #0a323c;
+  --muted: #4e6d74;
+  --faint: #86a1a7;
 
-  /* Acentos */
-  --brand: #e0352c;
-  --brand-deep: #a8131c;
-  --ember: #ff7a26;
-  --gold: #ffc24b;
+  /* Acentos: océano -> turquesa -> palmera */
+  --brand: #0e9f93;
+  --brand-deep: #0f766e;
+  --ember: #0ea5e9;
+  --gold: #f4b740;
+  --leaf: #16a34a;
 
-  --grad-brand: linear-gradient(100deg, #ff5b2e 0%, var(--brand) 55%, #b90f19 100%);
-  --grad-text: linear-gradient(92deg, #ff9a4d 0%, #ff5b2e 30%, var(--brand) 100%);
+  --grad-brand: linear-gradient(100deg, #0b7fb8 0%, #0f766e 55%, #12824a 100%);
+  --grad-text: linear-gradient(92deg, #0369a1 0%, #0d9488 45%, #166534 100%);
 
-  /* Tipografía (pila de sistema, igual a la referencia) */
+  /* Tipografía (pila de sistema) */
   --font-sans: 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', Roboto, sans-serif;
 
   /* Layout */
@@ -35,8 +36,8 @@
   --radius-lg: 26px;
   --gutter: clamp(1.25rem, 4vw, 2.5rem);
 
-  --shadow-lg: 0 30px 80px -30px rgba(0, 0, 0, 0.85);
-  --shadow-glow: 0 20px 70px -25px rgba(224, 53, 44, 0.45);
+  --shadow-lg: 0 30px 70px -32px rgba(13, 60, 70, 0.4);
+  --shadow-glow: 0 18px 55px -18px rgba(14, 159, 147, 0.55);
 }
 
 *,
@@ -57,8 +58,9 @@ body {
   line-height: 1.6;
   color: var(--text);
   background-color: var(--bg);
-  background-image: radial-gradient(1200px 600px at 85% -5%, rgba(224, 53, 44, 0.08), transparent 60%),
-    radial-gradient(900px 500px at -10% 15%, rgba(255, 122, 38, 0.05), transparent 55%);
+  background-image: radial-gradient(1200px 640px at 88% -8%, rgba(14, 165, 233, 0.1), transparent 60%),
+    radial-gradient(1000px 560px at -8% 12%, rgba(34, 197, 94, 0.09), transparent 55%),
+    radial-gradient(900px 500px at 55% 108%, rgba(13, 148, 136, 0.08), transparent 60%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -98,8 +100,8 @@ button {
 }
 
 ::selection {
-  background: rgba(224, 53, 44, 0.35);
-  color: #fff;
+  background: rgba(13, 148, 136, 0.25);
+  color: #04303a;
 }
 
 /* ---------- Utilidades ---------- */
@@ -179,15 +181,15 @@ button {
 }
 
 .btn--ghost {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(8, 60, 70, 0.04);
   border: 1px solid var(--line-strong);
   box-shadow: none;
+  color: var(--text);
 }
 
 .btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.3);
-}
+  background: rgba(8, 60, 70, 0.07);
+  border-color: rgba(13, 148, 136, 0.5);
 
 .link-arrow {
   display: inline-flex;
@@ -195,7 +197,7 @@ button {
   gap: 0.55rem;
   font-weight: 600;
   color: var(--text);
-  border-bottom: 1px solid rgba(224, 53, 44, 0.6);
+  border-bottom: 1px solid rgba(13, 148, 136, 0.55);
   padding-bottom: 2px;
   transition: gap 0.2s ease, color 0.2s ease;
 }

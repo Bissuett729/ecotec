@@ -29,7 +29,7 @@ const segments = [
     <div class="marquee-track">
       {[...segments, ...segments].map((s) => (
         <span class="logo-item">
-          <Icon name="flame" size={20} filled />
+          <Icon name="leaf" size={20} />
           {s}
         </span>
       ))}
@@ -87,16 +87,16 @@ const segments = [
     font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.32);
+    color: rgba(10, 50, 60, 0.42);
     white-space: nowrap;
     transition: color 0.2s ease;
   }
 
   .logo-item svg {
-    color: rgba(224, 53, 44, 0.5);
+    color: rgba(13, 148, 136, 0.6);
   }
 
   .logo-item:hover {
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(10, 50, 60, 0.9);
   }
 </style>

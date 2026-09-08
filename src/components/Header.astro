@@ -1,5 +1,6 @@
 ---
 import Icon from './ui/Icon.astro';
+import BrandLogo from './ui/BrandLogo.astro';
 
 interface Props {
   active?: string;
@@ -19,9 +20,7 @@ const links = [
 <header class="site-header" id="top">
   <div class="container header-inner">
     <a href="/" class="brand" aria-label="ECOTEC — Portada">
-      <span class="brand-mark" aria-hidden="true">
-        <Icon name="flame" size={20} filled />
-      </span>
+      <BrandLogo />
       <span class="brand-name">ECOTEC</span>
     </a>
 
@@ -69,7 +68,7 @@ const links = [
     position: sticky;
     top: 0;
     z-index: 60;
-    background: rgba(11, 11, 12, 0.82);
+    background: rgba(247, 252, 249, 0.82);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line);
@@ -180,7 +179,7 @@ const links = [
 
   .cart:hover {
     border-color: var(--brand);
-    background: rgba(224, 53, 44, 0.1);
+    background: rgba(14, 159, 147, 0.12);
   }
 
   .cart-count {
