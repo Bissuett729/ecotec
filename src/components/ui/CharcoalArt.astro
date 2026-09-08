@@ -4,9 +4,10 @@ interface Props {
   sub?: string;
   image?: string;
   alt?: string;
+  eager?: boolean;
 }
 
-const { label = '', sub = '', image = '', alt = '' } = Astro.props;
+const { label = '', sub = '', image = '', alt = '', eager = false } = Astro.props;
 
 // Posiciones deterministas de las briquetas para no variar en cada render
 const briquettes = [
@@ -40,7 +41,7 @@ const sparks = [
           class="art-img"
           src={image}
           alt={alt || (label ? label : 'Fotografía ECOTEC')}
-          loading="lazy"
+          loading={eager ? 'eager' : 'lazy'}
           decoding="async"
         />
       )

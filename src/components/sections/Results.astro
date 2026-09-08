@@ -30,7 +30,7 @@ const galleryItems = [...items, ...items].map((it, i) => ({ it, dup: i >= items.
     <div class="gallery-track">
       {galleryItems.map(({ it, dup }) => (
         <figure class="shot" aria-hidden={dup}>
-          <div class="shot-media"><CharcoalArt label="" image={it.img} alt={`${it.label} — ${it.sub}`} /></div>
+          <div class="shot-media"><CharcoalArt label="" image={it.img} alt={`${it.label} — ${it.sub}`} eager /></div>
           <figcaption>
             <strong>{it.label}</strong>
             <span>{it.sub}</span>
