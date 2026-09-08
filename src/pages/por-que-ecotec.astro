@@ -1,0 +1,283 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/ui/Icon.astro';
+import CharcoalArt from '../components/ui/CharcoalArt.astro';
+
+const pillars = [
+  {
+    icon: 'leaf',
+    title: '100% natural',
+    text: 'Hecho solo de cáscara de coco carbonizada. Sin carbón mineral, sin aditivos ni aglutinantes.',
+  },
+  {
+    icon: 'clock',
+    title: 'Máxima duración',
+    text: 'Alta densidad que rinde hasta 5 horas por kilo con fuego constante y pocas recargas.',
+  },
+  {
+    icon: 'thermo',
+    title: 'Temperatura estable',
+    text: 'Alcanza y sostiene hasta 600 °C, ideal para sellar carnes y mantener cocciones largas.',
+  },
+  {
+    icon: 'shield',
+    title: 'Cocción limpia',
+    text: 'Genera mínimo humo, chispa y ceniza. Sabor puro, sin residuos ni olores extraños.',
+  },
+];
+
+const steps = [
+  { n: '01', t: 'Encendido en minutos', d: 'Usa una encendedor de chimenea o un poco de papel. El carbón de coco enciende parejo y sin acelerantes.' },
+  { n: '02', t: 'Controla el flujo de aire', d: 'Ajusta las entradas de aire de tu parrilla para subir o bajar la temperatura de forma precisa.' },
+  { n: '03', t: 'Sella y cocina', d: 'Espera a que las briquetas estén cubiertas de ceniza blanca para lograr el sellado perfecto.' },
+];
+---
+
+<BaseLayout
+  title="¿Por qué ECOTEC? — Carbón de coco premium"
+  description="Descubre la historia de ECOTEC, por qué el carbón de coco es superior y cómo usarlo correctamente."
+  active="porque"
+>
+  <PageHero
+    eyebrow="¿Por qué ECOTEC?"
+    title="Nuestra historia"
+    text="ECOTEC nació con una idea simple: dar una segunda vida a la cáscara de coco y convertirla en el mejor combustible para parrilla, sin dañar el planeta."
+  />
+
+  <!-- Pilares -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="grid2">
+        <div>
+          <h2 class="h-section">Hecho con propósito</h2>
+          <p class="lead">
+            Cada año se generan miles de toneladas de cáscara de coco como desecho.
+            Nosotros la transformamos en un carbón denso, limpio y de larga duración
+            que rinde más que la leña y contamina mucho menos.
+          </p>
+          <p class="lead muted">
+            Trabajamos con productores locales, usamos energía limpia en el proceso
+            y empacamos en materiales reciclables. Así, cada bolsa de ECOTEC es una
+            decisión mejor para tu parrilla y para el medio ambiente.
+          </p>
+        </div>
+        <div class="media-wrap">
+          <CharcoalArt label="Proceso ECOTEC" sub="De la cáscara a la briqueta" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pillars -->
+  <section class="section pillars">
+    <div class="container">
+      <div class="pillars-grid">
+        {
+          pillars.map((p) => (
+            <article class="pillar">
+              <span class="pillar-ico"><Icon name={p.icon} size={22} /></span>
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Academia -->
+  <section class="section" id="academia">
+    <div class="container">
+      <div class="acad-grid">
+        <div class="acad-card">
+          <div class="acad-media">
+            <CharcoalArt label="" />
+            <button class="play-btn" type="button" aria-label="Reproducir vídeo">
+              <Icon name="play" size={24} filled />
+            </button>
+          </div>
+        </div>
+        <div>
+          <p class="eyebrow">Academia ECOTEC</p>
+          <h2 class="h-section">Aprende a usar el carbón de coco como un profesional</h2>
+          <p class="lead">
+            Encender carbón de coco es diferente al de madera. Domina el encendido,
+            el control de temperatura y el sellado perfecto con nuestras guías paso a paso.
+          </p>
+
+          <div class="steps">
+            {
+              steps.map((s) => (
+                <div class="step">
+                  <span class="step-n">{s.n}</span>
+                  <div>
+                    <h3>{s.t}</h3>
+                    <p>{s.d}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+          <a class="btn" href="/contacto">
+            Solicitar acceso
+            <Icon name="arrow" size={17} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 6vw, 4.5rem);
+    align-items: center;
+  }
+
+  .h-section {
+    font-size: clamp(1.9rem, 4vw, 2.9rem);
+    margin-bottom: 1.2rem;
+  }
+
+  .lead {
+    color: var(--muted);
+    font-size: 1.08rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .media-wrap .art-stage {
+    min-height: 320px;
+  }
+
+  .pillars {
+    border-block: 1px solid var(--line);
+    background: var(--bg-soft);
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+  }
+
+  .pillar {
+    padding: 1.7rem 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.006));
+  }
+
+  .pillar-ico {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    color: var(--ember);
+    background: rgba(255, 122, 38, 0.12);
+    border: 1px solid rgba(255, 122, 38, 0.25);
+    margin-bottom: 1.1rem;
+  }
+
+  .pillar h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .pillar p {
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .acad-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 6vw, 4.5rem);
+    align-items: center;
+  }
+
+  .acad-card .acad-media {
+    position: relative;
+  }
+
+  .acad-media .art-stage {
+    min-height: 360px;
+  }
+
+  .play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    background: var(--grad-brand);
+    box-shadow: 0 18px 50px -12px rgba(224, 53, 44, 0.7);
+    transition: transform 0.25s ease;
+  }
+
+  .play-btn:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+
+  .steps {
+    display: grid;
+    gap: 1.1rem;
+    margin: 1.8rem 0 2rem;
+  }
+
+  .step {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .step-n {
+    flex-shrink: 0;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(224, 53, 44, 0.8);
+    line-height: 1;
+    width: 3ch;
+  }
+
+  .step h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .step p {
+    color: var(--muted);
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 980px) {
+    .grid2,
+    .acad-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pillars-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .pillars-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

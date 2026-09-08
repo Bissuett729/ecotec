@@ -1,0 +1,175 @@
+---
+interface Props {
+  label?: string;
+  sub?: string;
+  image?: string;
+  alt?: string;
+}
+
+const { label = '', sub = '', image = '', alt = '' } = Astro.props;
+
+// Posiciones deterministas de las briquetas para no variar en cada render
+const briquettes = [
+  { x: '12%', y: '58%', w: 96, r: 26, hot: false },
+  { x: '30%', y: '48%', w: 108, r: 18, hot: true },
+  { x: '48%', y: '60%', w: 92, r: 30, hot: false },
+  { x: '64%', y: '46%', w: 104, r: 16, hot: true },
+  { x: '80%', y: '58%', w: 88, r: 22, hot: false },
+  { x: '22%', y: '74%', w: 110, r: 40, hot: false },
+  { x: '52%', y: '76%', w: 100, r: 34, hot: true },
+  { x: '72%', y: '72%', w: 96, r: 26, hot: false },
+  { x: '40%', y: '84%', w: 86, r: 24, hot: false },
+  { x: '62%', y: '86%', w: 80, r: 20, hot: false },
+];
+
+const sparks = [
+  { x: '18%', y: '30%', d: 0 },
+  { x: '38%', y: '22%', d: 1.2 },
+  { x: '60%', y: '28%', d: 0.6 },
+  { x: '76%', y: '18%', d: 1.8 },
+  { x: '86%', y: '36%', d: 0.9 },
+  { x: '28%', y: '12%', d: 1.5 },
+];
+---
+
+<figure class="art">
+  <div class="art-stage">
+    {
+      image ? (
+        <>
+          <img
+            class="art-img"
+            src={image}
+            alt={alt || (label ? label : 'Fotografía ECOTEC')}
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="art-tint" aria-hidden="true"></div>
+        </>
+      ) : (
+        <>
+          <div class="art-glow" aria-hidden="true"></div>
+          {
+            briquettes.map((b) => (
+              <span
+                class:list={['bq', { hot: b.hot }]}
+                style={`left:${b.x}; top:${b.y}; width:${b.w}px; border-radius:${b.r}% 50% 46% 50%/60% 46% 58% 42%;`}
+                aria-hidden="true"
+              ></span>
+            ))
+          }
+          {
+            sparks.map((s, i) => (
+              <span
+                class="spark"
+                style={`left:${s.x}; top:${s.y}; animation-delay:${s.d}s; --i:${i};`}
+                aria-hidden="true"
+              ></span>
+            ))
+          }
+        </>
+      )
+    }
+  </div>
+  {
+    (label || sub) && (
+      <figcaption class="art-caption">
+        {label && <strong>{label}</strong>}
+        {sub && <span>{sub}</span>}
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .art {
+    margin: 0;
+  }
+
+  .art-stage {
+    position: relative;
+    height: 100%;
+    min-height: 320px;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    background:
+      radial-gradient(120% 90% at 70% 100%, rgba(224, 53, 44, 0.32), transparent 55%),
+      radial-gradient(80% 60% at 20% 0%, rgba(255, 122, 38, 0.12), transparent 60%),
+      linear-gradient(160deg, #19191d 0%, #121215 55%, #0d0d0f 100%);
+  }
+
+  .art-glow {
+    position: absolute;
+    inset: auto 10% 0 10%;
+    height: 46%;
+    background: radial-gradient(60% 100% at 50% 100%, rgba(255, 82, 30, 0.5), rgba(224, 53, 44, 0.14) 55%, transparent 75%);
+    filter: blur(6px);
+  }
+
+  .art-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .art-tint {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.2) 55%, rgba(0, 0, 0, 0.55) 100%);
+    pointer-events: none;
+  }
+
+  .bq {
+    position: absolute;
+    height: 30px;
+    transform: translate(-50%, -50%) rotate(-12deg);
+    background: linear-gradient(180deg, #26262b 0%, #17171a 60%, #101013 100%);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+      0 10px 18px -8px rgba(0, 0, 0, 0.8);
+  }
+
+  .bq.hot {
+    background:
+      radial-gradient(40% 60% at 50% 30%, rgba(255, 150, 60, 0.55), transparent 70%),
+      linear-gradient(180deg, #2b1c17 0%, #221512 60%, #160d0b 100%);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 120, 40, 0.18),
+      0 10px 18px -8px rgba(0, 0, 0, 0.8),
+      0 0 26px -4px rgba(255, 90, 30, 0.5);
+  }
+
+  .spark {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffd9a0 0%, #ff7a26 45%, transparent 75%);
+    box-shadow: 0 0 10px 2px rgba(255, 122, 38, 0.55);
+    animation: emberFloat 3.4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .art-caption {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.85rem 0 0 0.2rem;
+    color: var(--faint);
+    font-size: 0.82rem;
+  }
+
+  .art-caption strong {
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 700px) {
+    .art-stage {
+      min-height: 260px;
+    }
+  }
+</style>

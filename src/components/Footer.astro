@@ -1,0 +1,240 @@
+---
+import Icon from './ui/Icon.astro';
+
+const footerNav = [
+  { title: 'Producto', links: [{ href: '/comprar', label: 'Comprar carbón' }, { href: '/mayoreo', label: 'Mayoreo' }] },
+  {
+    title: 'Compañía',
+    links: [
+      { href: '/por-que-ecotec', label: '¿Por qué ECOTEC?' },
+      { href: '/contacto', label: 'Contacto' },
+    ],
+  },
+];
+
+const socials = [
+  { href: 'https://www.facebook.com', label: 'Facebook', icon: 'facebook' },
+  { href: 'https://www.instagram.com', label: 'Instagram', icon: 'instagram' },
+  { href: 'mailto:hola@ecotec.mx', label: 'Correo', icon: 'chat' },
+];
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="f-brand">
+          <span class="f-mark"><Icon name="flame" size={18} filled /></span>
+          <span class="f-name">ECOTEC</span>
+        </a>
+        <p class="f-tag">
+          Carbón de coco premium, 100% sustentable. Calor intenso, menos humo y
+          larga duración para parrillas profesionales y de casa.
+        </p>
+        <div class="f-social">
+          {
+            socials.map((s) => (
+              <a href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}>
+                <Icon name={s.icon} size={18} />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      {
+        footerNav.map((col) => (
+          <div class="f-col">
+            <h4 class="f-title">{col.title}</h4>
+            <ul>
+              {col.links.map((l) => (
+                <li><a href={l.href}>{l.label}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+
+      <div class="f-col">
+        <h4 class="f-title">Contacto</h4>
+        <ul class="f-contact">
+          <li><a href="mailto:hola@ecotec.mx">hola@ecotec.mx</a></li>
+          <li><a href="tel:+5215500000000">+52 1 55 0000 0000</a></li>
+          <li>CDMX, México</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="f-copy">Copyright © ECOTEC 2026</p>
+      <p class="f-rights">All rights reserved</p>
+      <div class="f-lang" aria-label="Selector de idioma">
+        <button type="button" class="lang is-active" aria-label="Español">es</button>
+        <button type="button" class="lang" aria-label="Inglés">en</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    background: radial-gradient(800px 300px at 50% 0%, rgba(224, 53, 44, 0.06), transparent 70%), var(--bg-soft);
+    padding: clamp(3rem, 6vw, 4.5rem) 0 2rem;
+    margin-top: auto;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.2fr;
+    gap: 2.5rem;
+  }
+
+  .f-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .f-mark {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    color: #fff;
+    background: var(--grad-brand);
+  }
+
+  .f-name {
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+  }
+
+  .f-tag {
+    margin-top: 1rem;
+    max-width: 34ch;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .f-social {
+    display: flex;
+    gap: 0.7rem;
+    margin-top: 1.2rem;
+  }
+
+  .f-social a {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    color: var(--muted);
+    transition: all 0.2s ease;
+  }
+
+  .f-social a:hover {
+    color: #fff;
+    border-color: var(--brand);
+    background: rgba(224, 53, 44, 0.14);
+  }
+
+  .f-title {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 1.1rem;
+  }
+
+  .f-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .f-col a,
+  .f-contact li {
+    color: var(--muted);
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+  }
+
+  .f-col a:hover {
+    color: var(--text);
+  }
+
+  .f-contact li {
+    color: var(--muted);
+  }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .f-copy,
+  .f-rights {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .f-copy {
+    font-weight: 700;
+  }
+
+  .f-rights {
+    color: var(--faint);
+  }
+
+  .f-lang {
+    margin-left: auto;
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .lang {
+    appearance: none;
+    border: 1px solid var(--line-strong);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+
+  .lang.is-active {
+    color: #fff;
+    background: var(--grad-brand);
+    border-color: transparent;
+  }
+
+  @media (max-width: 900px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

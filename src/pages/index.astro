@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import StatsBand from '../components/sections/StatsBand.astro';
+import About from '../components/sections/About.astro';
+import Why from '../components/sections/Why.astro';
+import SocialProof from '../components/sections/SocialProof.astro';
+import TechSection from '../components/sections/TechSection.astro';
+import Comparison from '../components/sections/Comparison.astro';
+import BuyCards from '../components/sections/BuyCards.astro';
+import Results from '../components/sections/Results.astro';
+import AcademyCta from '../components/sections/AcademyCta.astro';
+
+const title = 'ECOTEC — Carbón de coco premium';
+---
+
+<BaseLayout title={title} active="portada">
+  <Hero />
+  <StatsBand />
+  <About />
+  <Why />
+  <SocialProof />
+  <TechSection />
+  <Comparison />
+  <BuyCards />
+  <Results />
+  <AcademyCta />
+</BaseLayout>

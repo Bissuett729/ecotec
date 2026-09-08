@@ -1,0 +1,124 @@
+---
+import Icon from '../ui/Icon.astro';
+
+const features = [
+  {
+    icon: 'thermo',
+    title: '600 °C estables',
+    text: 'Alcanza y mantiene alta temperatura para sellar cortes como un profesional.',
+  },
+  {
+    icon: 'leaf',
+    title: 'Cero químicos',
+    text: 'Carbón natural de cáscara de coco, sin aditivos, sin acelerantes y sin humo excesivo.',
+  },
+  {
+    icon: 'zap',
+    title: 'Encendido rápido',
+    text: 'Con la técnica correcta enciende en minutos y alcanza punto de cocción veloz.',
+  },
+  {
+    icon: 'clock',
+    title: 'Larga duración',
+    text: 'Un solo kilo rinde hasta 5 horas de fuego constante, sin recargas constantes.',
+  },
+];
+---
+
+<section class="tech">
+  <div class="container">
+    <div class="tech-head">
+      <p class="eyebrow">Superioridad técnica</p>
+      <h2 class="tech-title">Diseñado para el máximo rendimiento</h2>
+    </div>
+
+    <div class="tech-grid">
+      {
+        features.map((f) => (
+          <article class="tech-card">
+            <span class="t-ico"><Icon name={f.icon} size={24} /></span>
+            <h3 class="t-title">{f.title}</h3>
+            <p class="t-text">{f.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .tech {
+    padding: clamp(4rem, 8vw, 6.5rem) 0;
+    border-block: 1px solid var(--line);
+    background:
+      radial-gradient(800px 380px at 85% 10%, rgba(255, 122, 38, 0.07), transparent 65%),
+      var(--bg-soft);
+  }
+
+  .tech-head {
+    text-align: center;
+    display: grid;
+    justify-items: center;
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .tech-title {
+    font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+    max-width: 22ch;
+    margin-top: 1.2rem;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+  }
+
+  .tech-card {
+    padding: 1.8rem 1.6rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.008));
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+
+  .tech-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(224, 53, 44, 0.45);
+  }
+
+  .t-ico {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 15px;
+    color: var(--ember);
+    background: rgba(255, 122, 38, 0.12);
+    border: 1px solid rgba(255, 122, 38, 0.25);
+    margin-bottom: 1.3rem;
+  }
+
+  .t-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .t-text {
+    color: var(--muted);
+    font-size: 0.93rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 960px) {
+    .tech-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .tech-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

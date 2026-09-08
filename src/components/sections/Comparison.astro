@@ -1,0 +1,184 @@
+---
+import Icon from '../ui/Icon.astro';
+
+const rows = [
+  { label: 'Duración por kilo', ecotec: 'Hasta 5 horas', trad: '1.5 – 2 horas' },
+  { label: 'Temperatura', ecotec: 'Estable hasta 600 °C', trad: 'Variable, difícil de controlar' },
+  { label: 'Humo y chispa', ecotec: 'Mínimos', trad: 'Abundantes' },
+  { label: 'Químicos / aditivos', ecotec: 'Ninguno', trad: 'Algunos' },
+  { label: 'Ceniza y residuos', ecotec: 'Mínimos', trad: 'Abundantes' },
+  { label: 'Origen', ecotec: 'Renovable, subproducto de coco', trad: 'Tala de madera' },
+];
+---
+
+<section class="cmp section">
+  <div class="container">
+    <div class="cmp-head">
+      <p class="eyebrow">Comparativa</p>
+      <h2 class="cmp-title">
+        Carbón de coco ECOTEC <span class="grad-text">vs</span> carbón tradicional de madera
+      </h2>
+    </div>
+
+    <div class="cmp-table" role="table" aria-label="Comparativa ECOTEC vs carbón tradicional">
+      <div class="row row--head" role="row">
+        <span class="cell cell--label" role="columnheader"></span>
+        <span class="cell head-eco" role="columnheader">
+          <Icon name="flame" size={16} filled />
+          ECOTEC
+        </span>
+        <span class="cell head-trad" role="columnheader">
+          <Icon name="leaf" size={16} />
+          Carbón de madera
+        </span>
+      </div>
+
+      {
+        rows.map((r, i) => (
+          <div class="row" role="row" style={`--i:${i}`}>
+            <span class="cell cell--label" role="cell">{r.label}</span>
+            <span class="cell cell--eco" role="cell">
+              <Icon name="check" size={15} />
+              {r.ecotec}
+            </span>
+            <span class="cell cell--trad" role="cell">
+              <Icon name="cross" size={15} />
+              {r.trad}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .cmp-head {
+    text-align: center;
+    display: grid;
+    justify-items: center;
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .cmp-title {
+    max-width: 26ch;
+    font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+    margin-top: 1.2rem;
+  }
+
+  .cmp-table {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--bg-soft);
+    max-width: 960px;
+    margin-inline: auto;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr 1fr;
+    align-items: center;
+  }
+
+  .row + .row {
+    border-top: 1px solid var(--line);
+  }
+
+  .cell {
+    padding: 1rem 1.3rem;
+    font-size: 0.95rem;
+  }
+
+  .cell--label {
+    color: var(--muted);
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .row--head .cell {
+    padding-block: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.82rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .head-eco {
+    color: #fff;
+    background: linear-gradient(100deg, rgba(224, 53, 44, 0.35), rgba(224, 53, 44, 0.12));
+    border-left: 1px solid rgba(224, 53, 44, 0.35);
+  }
+
+  .head-eco svg {
+    color: var(--ember);
+  }
+
+  .head-trad {
+    color: var(--faint);
+    border-left: 1px solid var(--line);
+  }
+
+  .head-trad svg {
+    color: var(--faint);
+  }
+
+  .cell--eco {
+    color: var(--text);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    background: rgba(224, 53, 44, 0.05);
+    border-left: 1px solid rgba(224, 53, 44, 0.2);
+  }
+
+  .cell--eco svg {
+    flex-shrink: 0;
+    color: var(--brand);
+  }
+
+  .cell--trad {
+    color: var(--faint);
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    border-left: 1px solid var(--line);
+  }
+
+  .cell--trad svg {
+    flex-shrink: 0;
+    color: var(--faint);
+  }
+
+  @media (max-width: 760px) {
+    .cell {
+      padding: 0.85rem 0.9rem;
+      font-size: 0.85rem;
+    }
+
+    .row {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .cell--label {
+      grid-column: 1 / -1;
+      padding-bottom: 0.2rem;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .cell--eco,
+    .cell--trad {
+      border-left: 0;
+    }
+
+    .row--head {
+      display: none;
+    }
+  }
+</style>

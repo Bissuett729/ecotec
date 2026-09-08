@@ -1,0 +1,82 @@
+---
+import Icon from '../ui/Icon.astro';
+---
+
+<section class="academy section section--tight">
+  <div class="container">
+    <div class="academy-box">
+      <span class="academy-ico"><Icon name="book" size={26} /></span>
+      <h2 class="academy-title">
+        Aprende a usar correctamente el <span class="grad-text">carbón de coco premium</span>.
+      </h2>
+      <p class="academy-text">
+        Encender carbón de coco es diferente al de madera. Aprende nuestras técnicas
+        para un encendido rápido, control de temperatura y cómo lograr el sellado
+        perfecto en tus cortes.
+      </p>
+      <a class="btn" href="/por-que-ecotec#academia">
+        Accede a la academia
+        <Icon name="arrow" size={17} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .academy-box {
+    position: relative;
+    text-align: center;
+    display: grid;
+    justify-items: center;
+    gap: 1.1rem;
+    padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 4rem);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    background:
+      radial-gradient(70% 120% at 50% -20%, rgba(224, 53, 44, 0.22), transparent 60%),
+      linear-gradient(180deg, var(--bg-soft), #0d0d0f);
+  }
+
+  .academy-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(70% 90% at 50% 0%, #000, transparent 80%);
+    pointer-events: none;
+  }
+
+  .academy-ico {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    color: #fff;
+    background: var(--grad-brand);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .academy-title {
+    position: relative;
+    max-width: 26ch;
+    font-size: clamp(1.7rem, 4vw, 2.8rem);
+  }
+
+  .academy-text {
+    position: relative;
+    max-width: 58ch;
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .academy .btn {
+    position: relative;
+    margin-top: 0.6rem;
+  }
+</style>

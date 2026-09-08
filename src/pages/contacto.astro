@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/ui/Icon.astro';
+
+const info = [
+  { icon: 'chat', title: 'Escríbenos', lines: ['hola@ecotec.mx', 'Respuesta en menos de 24 h'] },
+  { icon: 'globe', title: 'Llámanos / WhatsApp', lines: ['+52 1 55 0000 0000', 'Lun – Vie · 9:00 a 18:00'] },
+  { icon: 'home', title: 'Visítanos', lines: ['CDMX, México', 'Solo con cita previa'] },
+];
+---
+
+<BaseLayout
+  title="Contacto — ECOTEC"
+  description="Contacta al equipo de ECOTEC para compras, mayoreo o dudas técnicas sobre carbón de coco."
+  active="contacto"
+>
+  <PageHero
+    eyebrow="Contacto"
+    title="Hablemos"
+    text="¿Compras para tu casa o para tu negocio? Cuéntanos qué necesitas y un asesor te atenderá a la brevedad."
+  />
+
+  <section class="section section--tight">
+    <div class="container contact-grid">
+      <div class="info-col">
+        {
+          info.map((i) => (
+            <div class="info-card">
+              <span class="info-ico"><Icon name={i.icon} size={22} /></span>
+              <div>
+                <h2>{i.title}</h2>
+                <p>{i.lines[0]}</p>
+                <span class="info-sub">{i.lines[1]}</span>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <form class="form" action="#" method="post">
+        <h2 class="form-title">Envíanos un mensaje</h2>
+        <div class="field-row">
+          <label>
+            <span>Nombre</span>
+            <input type="text" name="nombre" placeholder="Tu nombre" required />
+          </label>
+          <label>
+            <span>Correo</span>
+            <input type="email" name="correo" placeholder="tucorreo@ejemplo.com" required />
+          </label>
+        </div>
+        <label>
+          <span>Soy…</span>
+          <select name="tipo">
+            <option>Consumidor / uso personal</option>
+            <option>Restaurante o negocio</option>
+            <option>Distribuidor / mayoreo</option>
+          </select>
+        </label>
+        <label>
+          <span>Mensaje</span>
+          <textarea name="mensaje" rows="5" placeholder="Cuéntanos qué necesitas…"></textarea>
+        </label>
+        <button class="btn" type="submit">
+          Enviar mensaje
+          <Icon name="send" size={17} />
+        </button>
+      </form>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .info-col {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .info-card {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.4rem 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-soft);
+  }
+
+  .info-ico {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    color: var(--ember);
+    background: rgba(255, 122, 38, 0.12);
+    border: 1px solid rgba(255, 122, 38, 0.25);
+  }
+
+  .info-card h2 {
+    font-size: 1.15rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .info-card p {
+    color: var(--text);
+    font-size: 1rem;
+  }
+
+  .info-sub {
+    color: var(--faint);
+    font-size: 0.85rem;
+  }
+
+  .form {
+    display: grid;
+    gap: 1.1rem;
+    padding: clamp(1.6rem, 3vw, 2.4rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.005)), var(--bg-soft);
+  }
+
+  .form-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  label {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  label > span {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.98rem;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+    transition: border-color 0.2s ease;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 130px;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--brand);
+  }
+
+  .form .btn {
+    justify-self: start;
+  }
+
+  @media (max-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .field-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

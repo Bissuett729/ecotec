@@ -1,0 +1,171 @@
+---
+import Icon from '../ui/Icon.astro';
+import CharcoalArt from '../ui/CharcoalArt.astro';
+
+const cards = [
+  {
+    badge: 'Uso personal',
+    title: 'Para tu parrilla en casa',
+    text: 'Briquetas de carbón de coco en presentaciones de 10 y 20 kg. Perfectas para asados, parrillas y ahumadores de fin de semana con fuego constante.',
+    cta: 'Comprar carbón ECOTEC',
+    href: '/comprar',
+    sub: 'Para asados en casa',
+  },
+  {
+    badge: 'Negocios y distribuidores',
+    title: 'Para restaurantes y distribución',
+    text: 'Volúmenes de mayoreo, precios preferenciales y suministro continuo para restaurantes, cocinas profesionales y distribuidores.',
+    cta: 'Solicitar cotización empresarial',
+    href: '/mayoreo',
+    sub: 'Suministro continuo y escalable',
+    featured: true,
+  },
+];
+---
+
+<section class="buy section">
+  <div class="container">
+    <div class="buy-head">
+      <p class="eyebrow">Catálogo</p>
+      <h2 class="buy-title">Compra según tu necesidad</h2>
+    </div>
+
+    <div class="buy-grid">
+      {
+        cards.map((c) => (
+          <article class:list={['buy-card', { 'buy-card--feat': c.featured }]}>
+            <a href={c.href} class="buy-media" aria-label={c.title}>
+              <span class="buy-media-inner">
+                <span class="buy-badge">{c.badge}</span>
+                <CharcoalArt label="" />
+                <span class="buy-scrim">
+                  <h3 class="buy-media-title">{c.title}</h3>
+                  <span class="buy-media-sub">{c.sub}</span>
+                </span>
+              </span>
+            </a>
+            <div class="buy-body">
+              <p class="buy-text">{c.text}</p>
+              <a class:list={['btn', { 'btn--ghost': !c.featured }]} href={c.href}>
+                {c.cta}
+                <Icon name="arrow" size={17} />
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .buy-head {
+    text-align: center;
+    display: grid;
+    justify-items: center;
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .buy-title {
+    font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+    margin-top: 1.2rem;
+  }
+
+  .buy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .buy-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--bg-soft);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+
+  .buy-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 255, 255, 0.22);
+  }
+
+  .buy-card--feat {
+    border-color: rgba(224, 53, 44, 0.4);
+  }
+
+  .buy-media {
+    display: block;
+    padding: 0.9rem 0.9rem 0;
+  }
+
+  .buy-media-inner {
+    position: relative;
+    display: block;
+    border-radius: calc(var(--radius-lg) - 8px);
+    overflow: hidden;
+  }
+
+  .buy-media-inner .art-stage {
+    min-height: 300px;
+  }
+
+  .buy-badge {
+    position: absolute;
+    top: 1.1rem;
+    left: 1.1rem;
+    z-index: 2;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(11, 11, 12, 0.72);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--line-strong);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .buy-scrim {
+    position: absolute;
+    inset: auto 0 0 0;
+    z-index: 1;
+    display: block;
+    padding: 2.6rem 1.4rem 1.3rem;
+    background: linear-gradient(180deg, transparent, rgba(8, 8, 9, 0.92) 72%);
+  }
+
+  .buy-media-title {
+    color: #fff;
+    font-size: 1.5rem;
+  }
+
+  .buy-media-sub {
+    display: block;
+    margin-top: 0.3rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .buy-body {
+    padding: 1.5rem 1.6rem 1.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+  }
+
+  .buy-text {
+    color: var(--muted);
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 860px) {
+    .buy-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

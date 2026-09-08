@@ -1,0 +1,116 @@
+---
+import Icon from '../ui/Icon.astro';
+import CharcoalArt from '../ui/CharcoalArt.astro';
+
+const points = [
+  'Hecho a partir de cáscara de coco 100% natural y renovable.',
+  'Alta densidad: rinde más tiempo con menos cantidad.',
+  'Enciende limpio: mínimo humo, mínimas chispas y ceniza.',
+];
+---
+
+<section class="about section">
+  <div class="container about-grid">
+    <div class="about-copy">
+      <p class="eyebrow">Combustible natural de alta densidad y mayor rendimiento</p>
+      <h2 class="about-title">¿Qué es el carbón de coco ECOTEC?</h2>
+      <p class="about-text">
+        El carbón de coco ECOTEC se produce a partir de la cáscara del coco,
+        un subproducto agrícola que de otro modo se desecharía. Al carbonizarse a
+        alta temperatura se obtiene un combustible denso, uniforme y de combustión
+        limpia, muy superior al carbón de leña convencional.
+      </p>
+      <p class="about-text muted">
+        Su estructura compacta concentra más energía en menos volumen: por eso
+        enciende rápido, mantiene el calor de forma constante y genera muy poco humo
+        y ceniza durante horas de cocción.
+      </p>
+
+      <ul class="about-list">
+        {
+          points.map((p) => (
+            <li>
+              <span class="chk"><Icon name="check" size={15} /></span>
+              {p}
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="about-actions">
+        <a class="btn btn--ghost" href="/por-que-ecotec">Descubre nuestra historia</a>
+      </div>
+    </div>
+
+    <div class="about-media">
+      <CharcoalArt label="Briquetas de coco ECOTEC" sub="Alta densidad · Mínimo residuo" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    border-top: 1px solid var(--line);
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.012) 60%, transparent);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 6vw, 5.5rem);
+    align-items: center;
+  }
+
+  .about-title {
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    margin: 1.2rem 0 1.3rem;
+  }
+
+  .about-text {
+    color: var(--text);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+    max-width: 56ch;
+  }
+
+  .about-list {
+    list-style: none;
+    margin: 1.6rem 0 2rem;
+    padding: 0;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .about-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: var(--muted);
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+
+  .chk {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-top: 2px;
+    color: #fff;
+    background: var(--grad-brand);
+  }
+
+  .about-media {
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  @media (max-width: 920px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

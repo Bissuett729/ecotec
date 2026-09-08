@@ -1,0 +1,102 @@
+---
+import Icon from '../ui/Icon.astro';
+
+const segments = [
+  'Steakhouses',
+  'Restaurantes',
+  'Parrillas',
+  'Food trucks',
+  'Carnicerías',
+  'Hoteles',
+  'Distribuidores',
+  'Chefs',
+];
+---
+
+<section class="proof section section--tight">
+  <div class="container proof-head">
+    <p class="eyebrow">Eleva tu experiencia</p>
+    <h2 class="proof-title">
+      Utilizado en cocinas profesionales en <span class="grad-text">México y Estados Unidos</span>
+    </h2>
+    <p class="proof-text">
+      Equipos de parrilla y cocina de alto rendimiento confían en ECOTEC por su
+      temperatura estable, bajo humo y control total del fuego.
+    </p>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      {[...segments, ...segments].map((s) => (
+        <span class="logo-item">
+          <Icon name="flame" size={20} filled />
+          {s}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .proof-head {
+    text-align: center;
+    display: grid;
+    justify-items: center;
+  }
+
+  .proof-title {
+    max-width: 24ch;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin: 1.2rem 0 1rem;
+  }
+
+  .proof-text {
+    max-width: 52ch;
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .marquee {
+    margin-top: clamp(2rem, 4vw, 3rem);
+    overflow: hidden;
+    border-block: 1px solid var(--line);
+    padding-block: 1.1rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    gap: clamp(2.5rem, 6vw, 4.5rem);
+    width: max-content;
+    animation: marquee 26s linear infinite;
+  }
+
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .logo-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.32);
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .logo-item svg {
+    color: rgba(224, 53, 44, 0.5);
+  }
+
+  .logo-item:hover {
+    color: rgba(255, 255, 255, 0.75);
+  }
+</style>

@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/ui/Icon.astro';
+
+const benefits = [
+  { icon: 'truck', title: 'Suministro continuo', text: 'Programas de abastecimiento semanal o mensual para que nunca te quedes sin carbón.' },
+  { icon: 'zap', title: 'Volúmenes mayoreo', text: 'Precios preferenciales por volumen, desde costales de 20 kg hasta contenedores.' },
+  { icon: 'shield', title: 'Calidad consistente', text: 'Lotes estables y certificados: mismo rendimiento en cada entrega.' },
+  { icon: 'chat', title: 'Acompañamiento', text: 'Asesoría técnica y capacitación para tu equipo de cocina.' },
+];
+
+const steps = [
+  { n: '1', t: 'Cuéntanos tu operación', d: 'Volumen mensual, tipo de cocina y ciudad de entrega.' },
+  { n: '2', t: 'Recibe una cotización', d: 'Te enviamos precios de mayoreo y tiempos de entrega en 24 h.' },
+  { n: '3', t: 'Programa tu suministro', d: 'Acordamos entregas periódicas con logística dedicada.' },
+];
+---
+
+<BaseLayout
+  title="Mayoreo — ECOTEC"
+  description="Carbón de coco ECOTEC al mayoreo para restaurantes, cocinas profesionales y distribuidores."
+  active="mayoreo"
+>
+  <PageHero
+    eyebrow="Mayoreo"
+    title="Para restaurantes y distribución"
+    text="Abastece tu operación con carbón de coco premium: suministro continuo, precios por volumen y logística confiable en todo el país."
+  />
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="benefits-grid">
+        {
+          benefits.map((b) => (
+            <article class="benefit">
+              <span class="benefit-ico"><Icon name={b.icon} size={22} /></span>
+              <h2>{b.title}</h2>
+              <p>{b.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section how">
+    <div class="container">
+      <p class="eyebrow">¿Cómo funciona?</p>
+      <h2 class="how-title">Tres pasos para empezar</h2>
+      <div class="steps-grid">
+        {
+          steps.map((s) => (
+            <div class="how-step">
+              <span class="how-n">{s.n}</span>
+              <h3>{s.t}</h3>
+              <p>{s.d}</p>
+            </div>
+          ))
+        }
+      </div>
+      <div class="how-cta">
+        <a class="btn" href="/contacto">
+          Solicitar cotización empresarial
+          <Icon name="arrow" size={17} />
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+  }
+
+  .benefit {
+    padding: 1.8rem 1.6rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.006));
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+
+  .benefit:hover {
+    transform: translateY(-6px);
+    border-color: rgba(224, 53, 44, 0.45);
+  }
+
+  .benefit-ico {
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    color: var(--ember);
+    background: rgba(255, 122, 38, 0.12);
+    border: 1px solid rgba(255, 122, 38, 0.25);
+    margin-bottom: 1.2rem;
+  }
+
+  .benefit h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit p {
+    color: var(--muted);
+    font-size: 0.93rem;
+    line-height: 1.65;
+  }
+
+  .how {
+    border-top: 1px solid var(--line);
+    background: var(--bg-soft);
+  }
+
+  .how-title {
+    font-size: clamp(1.9rem, 4vw, 2.9rem);
+    margin: 1.2rem 0 2.5rem;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    counter-reset: step;
+  }
+
+  .how-step {
+    position: relative;
+    padding: 1.8rem 1.6rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--panel);
+  }
+
+  .how-n {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--grad-brand);
+    color: #fff;
+    font-weight: 900;
+    margin-bottom: 1.2rem;
+  }
+
+  .how-step h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .how-step p {
+    color: var(--muted);
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .how-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 980px) {
+    .benefits-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .steps-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
