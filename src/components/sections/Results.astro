@@ -2,11 +2,11 @@
 import CharcoalArt from '../ui/CharcoalArt.astro';
 
 const items = [
-  { label: 'Restaurantes', sub: 'Temperatura estable en hora pico' },
-  { label: 'Steakhouses', sub: 'Sellado profesional a 600 °C' },
-  { label: 'Food trucks', sub: 'Menos recargas durante el servicio' },
-  { label: 'Distribuidores', sub: 'Suministro continuo y escalable' },
-  { label: 'Cocinas de hotel', sub: 'Bajo humo en espacios cerrados' },
+  { label: 'Restaurantes', sub: 'Temperatura estable en hora pico', img: '/images/shashlik.jpg' },
+  { label: 'Steakhouses', sub: 'Sellado profesional a 600 °C', img: '/images/meat-corn.jpg' },
+  { label: 'Food trucks', sub: 'Menos recargas durante el servicio', img: '/images/bbq-meat.jpg' },
+  { label: 'Distribuidores', sub: 'Suministro continuo y escalable', img: '/images/coal-prod.jpg' },
+  { label: 'Cocinas de hotel', sub: 'Bajo humo en espacios cerrados', img: '/images/embers.jpg' },
 ];
 
 // Duplica los elementos para el marquee infinito y marca la segunda copia
@@ -30,7 +30,7 @@ const galleryItems = [...items, ...items].map((it, i) => ({ it, dup: i >= items.
     <div class="gallery-track">
       {galleryItems.map(({ it, dup }) => (
         <figure class="shot" aria-hidden={dup}>
-          <div class="shot-media"><CharcoalArt label="" /></div>
+          <div class="shot-media"><CharcoalArt label="" image={it.img} alt={`${it.label} — ${it.sub}`} /></div>
           <figcaption>
             <strong>{it.label}</strong>
             <span>{it.sub}</span>

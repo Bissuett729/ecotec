@@ -10,14 +10,14 @@ const products = [
     price: '$189',
     note: 'Ideal para probar o una sola parrillada grande.',
     badge: '',
-    art: 'Briquetas 5 kg',
+    img: '/images/charcoal-lump.jpg',
   },
   {
     name: 'ECOTEC 10 kg',
     price: '$349',
     note: 'La presentación favorita para asados del fin de semana.',
     badge: 'Más vendido',
-    art: 'Briquetas 10 kg',
+    img: '/images/briquettes.jpg',
     featured: true,
   },
   {
@@ -25,7 +25,7 @@ const products = [
     price: '$649',
     note: 'Mejor precio por kilo para parrilleros frecuentes.',
     badge: 'Mejor precio por kg',
-    art: 'Briquetas 20 kg',
+    img: '/images/coal-prod.jpg',
   },
 ];
 ---
@@ -48,7 +48,7 @@ const products = [
           <article class:list={['product', { 'product--feat': p.featured }]}>
             <div class="product-media">
               {p.badge && <span class="product-badge">{p.badge}</span>}
-              <CharcoalArt label="" />
+              <CharcoalArt label="" image={p.img} alt={`Carbón de coco ECOTEC ${p.name}`} />
             </div>
             <div class="product-body">
               <h2 class="product-name">{p.name}</h2>

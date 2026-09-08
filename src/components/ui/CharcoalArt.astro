@@ -35,40 +35,37 @@ const sparks = [
 <figure class="art">
   <div class="art-stage">
     {
-      image ? (
-        <>
-          <img
-            class="art-img"
-            src={image}
-            alt={alt || (label ? label : 'Fotografía ECOTEC')}
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="art-tint" aria-hidden="true"></div>
-        </>
-      ) : (
-        <>
-          <div class="art-glow" aria-hidden="true"></div>
-          {
-            briquettes.map((b) => (
-              <span
-                class:list={['bq', { hot: b.hot }]}
-                style={`left:${b.x}; top:${b.y}; width:${b.w}px; border-radius:${b.r}% 50% 46% 50%/60% 46% 58% 42%;`}
-                aria-hidden="true"
-              ></span>
-            ))
-          }
-          {
-            sparks.map((s, i) => (
-              <span
-                class="spark"
-                style={`left:${s.x}; top:${s.y}; animation-delay:${s.d}s; --i:${i};`}
-                aria-hidden="true"
-              ></span>
-            ))
-          }
-        </>
+      image && (
+        <img
+          class="art-img"
+          src={image}
+          alt={alt || (label ? label : 'Fotografía ECOTEC')}
+          loading="lazy"
+          decoding="async"
+        />
       )
+    }
+    {image && <div class="art-tint" aria-hidden="true"></div>}
+    {!image && <div class="art-glow" aria-hidden="true"></div>}
+    {
+      !image &&
+        briquettes.map((b) => (
+          <span
+            class:list={['bq', { hot: b.hot }]}
+            style={`left:${b.x}; top:${b.y}; width:${b.w}px; border-radius:${b.r}% 50% 46% 50%/60% 46% 58% 42%;`}
+            aria-hidden="true"
+          ></span>
+        ))
+    }
+    {
+      !image &&
+        sparks.map((s, i) => (
+          <span
+            class="spark"
+            style={`left:${s.x}; top:${s.y}; animation-delay:${s.d}s; --i:${i};`}
+            aria-hidden="true"
+          ></span>
+        ))
     }
   </div>
   {
